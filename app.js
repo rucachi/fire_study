@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=13";
+const DATA_URL = "theme-bank.json?v=11";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -29,27 +29,6 @@ function categoryLabel(key) {
   return (SUBJECT_LABELS[key] || {}).label || key;
 }
 
-function normalizeItem(item) {
-  const options = Array.isArray(item.options)
-    ? item.options.map((option) => String(option ?? "").trim()).filter(Boolean)
-    : [];
-  const extraOptions = options.length > 4 ? options.slice(4) : [];
-  const explanation = [item.explanation, ...extraOptions].filter(Boolean).join("\n\n");
-
-  return {
-    ...item,
-    options: options.slice(0, 4),
-    explanation
-  };
-}
-
-function isMultipleChoice(item) {
-  return item.options.length === 4
-    && Number.isInteger(item.answer)
-    && item.answer >= 0
-    && item.answer < 4;
-}
-
 function show(view) {
   ["setup-view", "quiz-view", "result-view"].forEach((id) => $(id).classList.toggle("hidden", id !== view));
 }
@@ -73,15 +52,6 @@ function parseMarkdown(text) {
   // Convert bold text
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   return html;
-}
-
-function parseQuestion(text) {
-  const withoutImages = String(text || "")
-    .replace(/\*\*\[\s*그림\s*\]\*\*/g, "")
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-  return parseMarkdown(withoutImages);
 }
 
 /** Format date for Korean localization (e.g. 2026년 9월 13일 오후 7시 14분) */
@@ -131,7 +101,7 @@ function startQuiz() {
   state.index = 0; state.selectedAnswer = null; state.score = 0; state.answered = 0;
   state.lastCount = selectedCount;
   // Check if this is an essay-only subject (no options on any item)
-  state.isEssaySubject = state.questions.every((q) => !isMultipleChoice(q));
+  state.isEssaySubject = state.questions.every((q) => !q.options || q.options.length === 0);
   show("quiz-view");
   renderQuestion();
 }
@@ -162,9 +132,9 @@ function renderQuestion() {
   updateSessionStats();
   $("question-category").textContent = categoryLabel(state.selectedSubject.key);
   $("question-id").textContent = `문제 ${state.index + 1}`;
-  $("question-text").innerHTML = parseQuestion(item.question);
+  $("question-text").innerHTML = parseMarkdown(item.question);
 
-  const hasOptions = isMultipleChoice(item);
+  const hasOptions = item.options && item.options.length > 0;
 
   if (hasOptions) {
     // Multiple-choice question: show selectable options
@@ -213,7 +183,7 @@ function updateSessionStats() {
 
 function submitAnswer() {
   const item = state.questions[state.index];
-  const hasOptions = isMultipleChoice(item);
+  const hasOptions = item.options && item.options.length > 0;
 
   if (hasOptions) {
     // Multiple-choice: grade the answer
@@ -293,7 +263,6 @@ async function init() {
       };
       return {
         ...subject,
-        items: (subject.items || []).map(normalizeItem),
         key,
         displayLabel: metadata.label,
         description: metadata.description
