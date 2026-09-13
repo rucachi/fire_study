@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=" + new Date().getTime();
+const DATA_URL = "theme-bank.json?v=6";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -16,11 +16,16 @@ const SUBJECT_LABELS = {
   "theme-5-fire-electrical-anki": {
     label: "소방설비기사 전기 Anki",
     description: "Anki 전기 학습 자료"
+  },
+  "theme-6-fire-electrical-practical": {
+    label: "소방전기 실기",
+    description: "주관식·계산·서술형 문제"
   }
 };
 const state = {
   allItems: [], selectedSubject: null, questions: [], index: 0,
-  selectedAnswer: null, score: 0, answered: 0, lastCount: 20
+  selectedAnswer: null, score: 0, answered: 0, lastCount: 20,
+  isEssaySubject: false
 };
 const $ = (id) => document.getElementById(id);
 
@@ -32,11 +37,21 @@ function show(view) {
   ["setup-view", "quiz-view", "result-view"].forEach((id) => $(id).classList.toggle("hidden", id !== view));
 }
 
+/** Escape HTML special characters to prevent XSS */
+function escapeHtml(text) {
+  if (!text) return "";
+  const div = document.createElement("div");
+  div.appendChild(document.createTextNode(text));
+  return div.innerHTML;
+}
+
 function parseMarkdown(text) {
   if (!text) return "";
+  // Escape HTML entities first (XSS prevention)
+  let html = escapeHtml(text);
   // Fix image paths from relative markdown to web root
-  let html = text.replace(/\.\.\/images\//g, 'themes/images/');
-  // Convert markdown images to HTML
+  html = html.replace(/\.\.\/images\//g, 'themes/images/');
+  // Convert markdown images to HTML (safe because src comes from our own data after escaping)
   html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0; display: block;">');
   // Convert bold text
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -45,8 +60,8 @@ function parseMarkdown(text) {
 
 function renderSubjects() {
   $("subject-list").innerHTML = SUBJECTS.map((subject) => `
-    <button class="subject-card" type="button" data-subject="${subject.key}">
-      <strong>${subject.displayLabel}</strong><span>${subject.description}</span><span>${subject.items.length}문항</span>
+    <button class="subject-card" type="button" data-subject="${escapeHtml(subject.key)}">
+      <strong>${escapeHtml(subject.displayLabel)}</strong><span>${escapeHtml(subject.description)}</span><span>${subject.items.length}문항</span>
     </button>
   `).join("");
   $("total-count").textContent = SUBJECTS.reduce((total, subject) => total + subject.items.length, 0);
@@ -77,13 +92,24 @@ function startQuiz() {
   state.questions = basePool.slice(0, selectedCount);
   state.index = 0; state.selectedAnswer = null; state.score = 0; state.answered = 0;
   state.lastCount = selectedCount;
+  // Check if this is an essay-only subject (no options on any item)
+  state.isEssaySubject = state.questions.every((q) => !q.options || q.options.length === 0);
   show("quiz-view");
   renderQuestion();
+}
+
+/** Confirm before leaving quiz in progress */
+function confirmGoHome() {
+  if (state.questions.length > 0 && state.answered > 0 && state.answered < state.questions.length) {
+    if (!confirm("진행 중인 학습을 종료할까요? 현재까지의 기록은 저장되지 않습니다.")) return;
+  }
+  goHome();
 }
 
 function goHome() {
   state.selectedSubject = null;
   state.questions = [];
+  state.isEssaySubject = false;
   document.querySelectorAll(".subject-card").forEach((card) => card.classList.remove("selected"));
   $("start-button").disabled = true;
   show("setup-view");
@@ -93,7 +119,7 @@ function renderQuestion() {
   const item = state.questions[state.index];
   state.selectedAnswer = null;
   $("progress-label").textContent = `${state.index + 1} / ${state.questions.length}`;
-  $("score-label").textContent = `현재 점수 ${state.score}`;
+  $("score-label").textContent = state.isEssaySubject ? "주관식" : `현재 점수 ${state.score}`;
   $("progress-bar").style.width = `${(state.index / state.questions.length) * 100}%`;
   updateSessionStats();
   $("question-category").textContent = categoryLabel(state.selectedSubject.key);
@@ -123,7 +149,7 @@ function renderQuestion() {
   } else {
     // Essay/calculation question: show a single reveal button
     $("options").innerHTML = "";
-    $("submit-button").textContent = "해설 보기";
+    $("submit-button").textContent = "답안 보기";
     $("submit-button").disabled = false;
   }
 
@@ -137,10 +163,14 @@ function updateSessionStats() {
   const completed = state.answered;
   const total = state.questions.length;
   const progress = total ? Math.round((state.index / total) * 100) : 0;
-  const accuracy = completed ? Math.round((state.score / completed) * 100) : 0;
   $("rail-progress").textContent = `진행률 ${progress}%`;
   $("answered-label").textContent = `${completed} / ${total}`;
-  $("accuracy-label").textContent = `${accuracy}%`;
+  if (state.isEssaySubject) {
+    $("accuracy-label").textContent = "주관식";
+  } else {
+    const accuracy = completed ? Math.round((state.score / completed) * 100) : 0;
+    $("accuracy-label").textContent = `${accuracy}%`;
+  }
 }
 
 function submitAnswer() {
@@ -163,7 +193,7 @@ function submitAnswer() {
     const answerText = item.answer == null
       ? `답안: ${parseMarkdown(item.answerText) || "원문 답안 확인 필요"}`
       : `정답: ⓘ ${parseMarkdown(item.options[item.answer])}`;
-    feedback.innerHTML = `<strong>${correct ? "✅ 정답입니다!" : "❌ 오답입니다."}</strong>${answerText}<br>${parseMarkdown(item.explanation) || "해설 준비 중입니다."}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+    feedback.innerHTML = `<strong>${correct ? "✅ 정답입니다!" : "❌ 오답입니다."}</strong>${answerText}<br>${parseMarkdown(item.explanation) || "해설 준비 중입니다."}<small>출처: ${escapeHtml(item.source) || "공식 기준 확인 필요"}</small>`;
     $("score-label").textContent = `현재 점수 ${state.score}`;
   } else {
     // Essay/calculation: just reveal the answer and explanation
@@ -171,7 +201,8 @@ function submitAnswer() {
     const feedback = $("feedback");
     feedback.className = "feedback correct";
     const answer = parseMarkdown(item.answerText) || parseMarkdown(item.explanation) || "해설 없음";
-    feedback.innerHTML = `<strong>📝 답안 및 해설</strong>${answer}<br>${item.explanation && item.explanation !== item.answerText ? parseMarkdown(item.explanation) : ""}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+    const extraExplanation = item.explanation && item.explanation !== item.answerText ? parseMarkdown(item.explanation) : "";
+    feedback.innerHTML = `<strong>📝 답안 및 해설</strong>${answer}${extraExplanation ? "<br>" + extraExplanation : ""}<small>출처: ${escapeHtml(item.source) || "공식 기준 확인 필요"}</small>`;
   }
 
   updateSessionStats();
@@ -189,13 +220,23 @@ function nextQuestion() {
 function showResult() {
   $("progress-bar").style.width = "100%";
   show("result-view");
-  const percent = Math.round((state.score / state.questions.length) * 100);
-  $("result-summary").textContent = `${state.questions.length}문항 중 ${state.score}문항 정답 (${percent}점)`;
-  $("result-breakdown").innerHTML = `
-    <div><strong>${state.questions.length}</strong><span>풀이 문항</span></div>
-    <div><strong>${state.score}</strong><span>정답</span></div>
-    <div><strong>${state.questions.length - state.score}</strong><span>오답</span></div>
-  `;
+
+  if (state.isEssaySubject) {
+    $("result-summary").textContent = `${state.questions.length}문항 학습 완료`;
+    $("result-breakdown").innerHTML = `
+      <div><strong>${state.questions.length}</strong><span>풀이 문항</span></div>
+      <div><strong>주관식</strong><span>채점 없음</span></div>
+      <div><strong>✓</strong><span>학습 완료</span></div>
+    `;
+  } else {
+    const percent = state.questions.length ? Math.round((state.score / state.questions.length) * 100) : 0;
+    $("result-summary").textContent = `${state.questions.length}문항 중 ${state.score}문항 정답 (${percent}점)`;
+    $("result-breakdown").innerHTML = `
+      <div><strong>${state.questions.length}</strong><span>풀이 문항</span></div>
+      <div><strong>${state.score}</strong><span>정답</span></div>
+      <div><strong>${state.questions.length - state.score}</strong><span>오답</span></div>
+    `;
+  }
 }
 
 async function init() {
@@ -228,12 +269,12 @@ $("start-button").addEventListener("click", startQuiz);
 $("submit-button").addEventListener("click", submitAnswer);
 $("next-button").addEventListener("click", nextQuestion);
 $("retry-button").addEventListener("click", startQuiz);
-$("back-button").addEventListener("click", goHome);
+$("back-button").addEventListener("click", confirmGoHome);
 $("result-home-button").addEventListener("click", goHome);
-$("home-button").addEventListener("click", goHome);
+$("home-button").addEventListener("click", confirmGoHome);
 $("reset-progress").addEventListener("click", () => {
   state.score = 0;
-  localStorage.clear();
+  state.answered = 0;
   alert("학습 기록을 초기화했습니다.");
 });
 init();
