@@ -17,7 +17,7 @@
   
   <meta name="robots" content="index, follow">
   <title>소방설비기사 문제풀이</title>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
   <main class="app-shell">
@@ -43,6 +43,13 @@
       </div>
       <div id="subject-list" class="subject-grid" aria-label="과목 목록"></div>
       <div class="setup-actions">
+        <div class="setup-choice">
+          <label class="select-label" for="question-order">출제 순서</label>
+          <select id="question-order">
+            <option value="random" selected>랜덤 출제</option>
+            <option value="sequential">순서대로</option>
+          </select>
+        </div>
         <div class="setup-choice">
           <label class="select-label" for="question-count">이번 세션</label>
           <select id="question-count">
@@ -117,6 +124,6 @@
       <p>제작자 블로그: <a href="https://blog.naver.com/anova99" target="_blank" rel="noopener noreferrer">https://blog.naver.com/anova99</a></p>
     </footer>
   </main>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

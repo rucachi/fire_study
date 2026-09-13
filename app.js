@@ -59,7 +59,12 @@ function renderSubjects() {
 }
 
 function shuffle(items) {
-  return [...items].sort(() => Math.random() - .5);
+  const array = [...items];
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 function startQuiz() {
@@ -67,7 +72,9 @@ function startQuiz() {
   const pool = state.selectedSubject.items;
   if (!pool.length) return;
   const selectedCount = $("question-count").value === "all" ? pool.length : Number($("question-count").value);
-  state.questions = shuffle(pool).slice(0, selectedCount);
+  const isRandom = $("question-order") ? $("question-order").value === "random" : true;
+  const basePool = isRandom ? shuffle(pool) : [...pool];
+  state.questions = basePool.slice(0, selectedCount);
   state.index = 0; state.selectedAnswer = null; state.score = 0; state.answered = 0;
   state.lastCount = selectedCount;
   show("quiz-view");
