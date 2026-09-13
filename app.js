@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=8";
+const DATA_URL = "theme-bank.json?v=12";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -27,6 +27,27 @@ const $ = (id) => document.getElementById(id);
 
 function categoryLabel(key) {
   return (SUBJECT_LABELS[key] || {}).label || key;
+}
+
+function normalizeItem(item) {
+  const options = Array.isArray(item.options)
+    ? item.options.map((option) => String(option ?? "").trim()).filter(Boolean)
+    : [];
+  const extraOptions = options.length > 4 ? options.slice(4) : [];
+  const explanation = [item.explanation, ...extraOptions].filter(Boolean).join("\n\n");
+
+  return {
+    ...item,
+    options: options.slice(0, 4),
+    explanation
+  };
+}
+
+function isMultipleChoice(item) {
+  return item.options.length === 4
+    && Number.isInteger(item.answer)
+    && item.answer >= 0
+    && item.answer < 4;
 }
 
 function show(view) {
@@ -63,7 +84,7 @@ function formatDateTime(date) {
   const minutes = date.getMinutes();
   const ampm = hours >= 12 ? '오후' : '오전';
   const displayHours = hours % 12 || 12;
-  return `${year}년 ${month}월 ${day}일 ${ampm} ${displayHours}시 ${minutes}분`;
+  return `${year}년 ${month}월 ${day}일 ${ampm} ${displayHours}시${minutes}분`;
 }
 
 function renderSubjects() {
@@ -101,7 +122,7 @@ function startQuiz() {
   state.index = 0; state.selectedAnswer = null; state.score = 0; state.answered = 0;
   state.lastCount = selectedCount;
   // Check if this is an essay-only subject (no options on any item)
-  state.isEssaySubject = state.questions.every((q) => !q.options || q.options.length === 0);
+  state.isEssaySubject = state.questions.every((q) => !isMultipleChoice(q));
   show("quiz-view");
   renderQuestion();
 }
@@ -134,7 +155,7 @@ function renderQuestion() {
   $("question-id").textContent = `문제 ${state.index + 1}`;
   $("question-text").innerHTML = parseMarkdown(item.question);
 
-  const hasOptions = item.options && item.options.length > 0;
+  const hasOptions = isMultipleChoice(item);
 
   if (hasOptions) {
     // Multiple-choice question: show selectable options
@@ -183,7 +204,7 @@ function updateSessionStats() {
 
 function submitAnswer() {
   const item = state.questions[state.index];
-  const hasOptions = item.options && item.options.length > 0;
+  const hasOptions = isMultipleChoice(item);
 
   if (hasOptions) {
     // Multiple-choice: grade the answer
@@ -230,14 +251,14 @@ function showResult() {
   show("result-view");
 
   const nowStr = formatDateTime(new Date());
-  $("result-title").textContent = `학습 완료 (${nowStr})`;
+  $("result-title").textContent = `학습완료(${nowStr})`;
 
   if (state.isEssaySubject) {
-    $("result-summary").textContent = `${state.questions.length}문항 학습 완료`;
+    $("result-summary").textContent = `${state.questions.length}문항 학습완료`;
     $("result-breakdown").innerHTML = `
       <div><strong>${state.questions.length}</strong><span>풀이 문항</span></div>
       <div><strong>주관식</strong><span>채점 없음</span></div>
-      <div><strong>✓</strong><span>학습 완료</span></div>
+      <div><strong>✓</strong><span>학습완료</span></div>
     `;
   } else {
     const percent = state.questions.length ? Math.round((state.score / state.questions.length) * 100) : 0;
@@ -263,6 +284,7 @@ async function init() {
       };
       return {
         ...subject,
+        items: (subject.items || []).map(normalizeItem),
         key,
         displayLabel: metadata.label,
         description: metadata.description
