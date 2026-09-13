@@ -1,0 +1,10 @@
+*.apkg
+소방설비기사-*.txt
+source-normalized.json
+personal-question-bank-500.json
+question-bank.json
+legal-bank*.json
+mechanical-bank*.json
+mechanical-official-sources.json
+electrical-bank*.json
+__pycache__/
