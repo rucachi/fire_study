@@ -1897,7 +1897,7 @@
         {
           "id": "theme-1-fire-principles-0127",
           "category": "theme-1-fire-principles",
-          "question": "9. 건축물의 화재 시 피난자들의 집중으로 패닉(panic) 현상이 \n일어날 수 있는 피난방향은?\n\n소방설비기사(전기분야)",
+          "question": "9. 건축물의 화재 시 피난자들의 집중으로 패닉(panic) 현상이 \n일어날 수 있는 피난방향은?",
           "options": [
             "",
             "",
@@ -3847,7 +3847,7 @@
         {
           "id": "theme-1-fire-principles-0257",
           "category": "theme-1-fire-principles",
-          "question": "19. 인화점이 40℃ 이하인 위험물을 저장, 취급하는 장소에 설\n치하는 전기설비는 방폭구조로 설치하는데, 용기의 내부에 \n기체를 압입하여 압력을 유지하도록 함으로써 폭발성가스가 \n침입하는 것을 방지하는 구조는?\n\n소방설비기사(전기분야)",
+          "question": "19. 인화점이 40℃ 이하인 위험물을 저장, 취급하는 장소에 설\n치하는 전기설비는 방폭구조로 설치하는데, 용기의 내부에 \n기체를 압입하여 압력을 유지하도록 함으로써 폭발성가스가 \n침입하는 것을 방지하는 구조는?",
           "options": [
             "압력 방폭구조",
             "유입 방폭구조",
@@ -4432,7 +4432,7 @@
         {
           "id": "theme-1-fire-principles-0296",
           "category": "theme-1-fire-principles",
-          "question": "18. 화재 시 나타나는 인간의 피난특성으로 볼 수 없는 것은?\n\n소방설비기사(전기분야)",
+          "question": "18. 화재 시 나타나는 인간의 피난특성으로 볼 수 없는 것은?",
           "options": [
             "어두운 곳으로 대피한다.",
             "최초로 행동한 사람을 따른다.",
@@ -6373,7 +6373,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0013",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "33. 그림과 같은 회로에서 R1과 R2가 각각 2 Ω 및 3 Ω 이었다. \n합성저항이 4 Ω이면 R3는 몇 Ω 인가?\n\n소방설비기사(전기분야)",
+          "question": "33. 그림과 같은 회로에서 R1과 R2가 각각 2 Ω 및 3 Ω 이었다. \n합성저항이 4 Ω이면 R3는 몇 Ω 인가?",
           "options": [
             "5",
             "6",
@@ -6778,7 +6778,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0040",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "40. 단상전력을 간접적으로 측정하기 위해 3전압계법을 사용하\n는 경우 단상교류전력 P[W]는?\n\n소방설비기사(전기분야)",
+          "question": "40. 단상전력을 간접적으로 측정하기 위해 3전압계법을 사용하\n는 경우 단상교류전력 P[W]는?",
           "options": [
             "",
             "",
@@ -6793,7 +6793,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0041",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "21. 그림과 같은 정현파에서 v=Vmsin(wt+θ)의 주기 T로 옳은 \n\n소방설비기사(전기분야)\n것은?",
+          "question": "21. 그림과 같은 정현파에서 v=Vmsin(wt+θ)의 주기 T로 옳은 \n\n것은?",
           "options": [
             "4π/w",
             "2π/w",
@@ -8098,7 +8098,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0128",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "28. 균등 눈금을 사용하며 소비전력이 적게 소요되고 정확도가 \n\n소방설비기사(전기분야)\n높은 지시계기는?",
+          "question": "28. 균등 눈금을 사용하며 소비전력이 적게 소요되고 정확도가 \n\n높은 지시계기는?",
           "options": [
             "가동 코일형 계기",
             "전류력계형 계기",
@@ -8293,7 +8293,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0141",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "21. 다음과 같은 회로에서 a-b간의 합성저항은 몇 Ω 인가?\n\n소방설비기사(전기분야)",
+          "question": "21. 다음과 같은 회로에서 a-b간의 합성저항은 몇 Ω 인가?",
           "options": [
             "2.5",
             "5",
@@ -8593,7 +8593,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0161",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "21. 그림과 같은 회로에서 a, b단자에 흐르는 전류 I가 인가전압 \nE와 동위상이 되었다. 이때 L 값은?\n\n소방설비기사(전기분야)",
+          "question": "21. 그림과 같은 회로에서 a, b단자에 흐르는 전류 I가 인가전압 \nE와 동위상이 되었다. 이때 L 값은?",
           "options": [
             "",
             "",
@@ -10093,7 +10093,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0261",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "21. 그림과 같은 회로에서 A-B 단자에 나타나는 전압은 몇 V \n\n소방설비기사(전기분야)\n인가?",
+          "question": "21. 그림과 같은 회로에서 A-B 단자에 나타나는 전압은 몇 V \n\n인가?",
           "options": [
             "20",
             "40",
@@ -10603,7 +10603,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0295",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "35. 그림과 같이 전류계 A1, A2를 접속할 경우 A1은 25A, A2는 \n5A를 지시하였다. 전류계 A2의 내부저항은 몇 Ω인가?\n\n소방설비기사(전기분야)",
+          "question": "35. 그림과 같이 전류계 A1, A2를 접속할 경우 A1은 25A, A2는 \n5A를 지시하였다. 전류계 A2의 내부저항은 몇 Ω인가?",
           "options": [
             "0.05",
             "0.08",
@@ -10768,7 +10768,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0306",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "26. 그름의 시퀀스 회로와 등가인 논리 게이트는?\n    \n\n소방설비기사(전기분야)",
+          "question": "26. 그름의 시퀀스 회로와 등가인 논리 게이트는?",
           "options": [
             "OR게이트",
             "AND게이트",
@@ -11023,7 +11023,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0323",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "23. 그림의 블록선도와 같이 표현되는 제어 시스템의 전달함수 \nG(s)는?\n\n소방설비기사(전기분야)",
+          "question": "23. 그림의 블록선도와 같이 표현되는 제어 시스템의 전달함수 \nG(s)는?",
           "options": [
             "",
             "",
@@ -11368,7 +11368,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0346",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "26. 블록선도의 전달함수 (C(s)/R(s))는?\n\n소방설비기사(전기분야)",
+          "question": "26. 블록선도의 전달함수 (C(s)/R(s))는?",
           "options": [
             "",
             "",
@@ -11548,7 +11548,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0358",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "38. 자기 인덕턴스 L1, L2가 각각 4mH, 9mH인 두 코일이 이상\n적인 결합이 되었다면 상호 인덕턴스는 몇 mH인가? (단, \n\n소방설비기사(전기분야)\n결합계수는 1이다.)",
+          "question": "38. 자기 인덕턴스 L1, L2가 각각 4mH, 9mH인 두 코일이 이상\n적인 결합이 되었다면 상호 인덕턴스는 몇 mH인가? (단, \n\n결합계수는 1이다.)",
           "options": [
             "6",
             "12",
@@ -11608,7 +11608,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0362",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "22. 시퀀스회로를 논리식으로 표현하면?\n\n소방설비기사(전기분야)",
+          "question": "22. 시퀀스회로를 논리식으로 표현하면?",
           "options": [
             "",
             "",
@@ -11698,7 +11698,7 @@
         {
           "id": "theme-2-fire-electrical-circuits-0368",
           "category": "theme-2-fire-electrical-circuits",
-          "question": "28. 회로에서 저항 20Ω에 흐르는 전류(A)는?\n\n소방설비기사(전기분야)",
+          "question": "28. 회로에서 저항 20Ω에 흐르는 전류(A)는?",
           "options": [
             "0.8",
             "1.0",
@@ -13864,7 +13864,7 @@
         {
           "id": "theme-3-fire-laws-0092",
           "category": "theme-3-fire-laws",
-          "question": "52. 다음 중 위험물별 성질로서 틀린 것은?\n\n소방설비기사(전기분야)",
+          "question": "52. 다음 중 위험물별 성질로서 틀린 것은?",
           "options": [
             "제1류 : 산화성 고체",
             "제2류 : 가연성 고체",
@@ -14674,7 +14674,7 @@
         {
           "id": "theme-3-fire-laws-0146",
           "category": "theme-3-fire-laws",
-          "question": "46. 위험물안전관리법상 위험물시설의 변경 기준 중 다음 ( ) 안\n에 알맞은 것은?(관련 규정 개정전 문제로 기존 정답은 2번\n입니다. 여기서는 2번을 누르면 정답 처리 됩니다. 자세한 \n내용은 해설을 참고하세요)\n\n소방설비기사(전기분야)",
+          "question": "46. 위험물안전관리법상 위험물시설의 변경 기준 중 다음 ( ) 안\n에 알맞은 것은?(관련 규정 개정전 문제로 기존 정답은 2번\n입니다. 여기서는 2번을 누르면 정답 처리 됩니다. 자세한 \n내용은 해설을 참고하세요)",
           "options": [
             "㉠ 1, ㉡ 소방본부장 또는 소방서장",
             "㉠ 1, ㉡ 시 ・ 도지사",
@@ -15559,7 +15559,7 @@
         {
           "id": "theme-3-fire-laws-0205",
           "category": "theme-3-fire-laws",
-          "question": "45. 화재예방, 소방시설 설치∙유지 및 안전관리에 관한 법상 소\n\n소방설비기사(전기분야)\n방안전관리대상물의 소방안전 관리자 업무가 아닌 것은?(문\n제오류로 가답안 발표시 1번으로 발표되었지만 확정답안 발\n표시 모두 정답처리 되었습니다. 여기서는 1번을 누르면 정\n답 처리 됩니다.)",
+          "question": "45. 화재예방, 소방시설 설치∙유지 및 안전관리에 관한 법상 소\n\n방안전관리대상물의 소방안전 관리자 업무가 아닌 것은?(문\n제오류로 가답안 발표시 1번으로 발표되었지만 확정답안 발\n표시 모두 정답처리 되었습니다. 여기서는 1번을 누르면 정\n답 처리 됩니다.)",
           "options": [
             "소방훈련 및 교육",
             "자위소방대 및 초기 대응체계의 구성∙운영∙교육",
@@ -15739,7 +15739,7 @@
         {
           "id": "theme-3-fire-laws-0217",
           "category": "theme-3-fire-laws",
-          "question": "57. 화재예방, 소방시설 설치∙유지 및 안전관리에 관한 법령상 \n비상경보설비를 설치하여야 할 특정소방대상물의 기준 중 \n옳은 것은? (단, 지하구 모래∙석재 등 불연재료 창고 및 위\n험물 저장∙처리 시설 중 가스시설은 제외한다.)\n\n소방설비기사(전기분야)",
+          "question": "57. 화재예방, 소방시설 설치∙유지 및 안전관리에 관한 법령상 \n비상경보설비를 설치하여야 할 특정소방대상물의 기준 중 \n옳은 것은? (단, 지하구 모래∙석재 등 불연재료 창고 및 위\n험물 저장∙처리 시설 중 가스시설은 제외한다.)",
           "options": [
             "지하층 또는 무창층의 바닥면적이 50m2이상인 것",
             "연면적이 400m2이상인 것",
@@ -16084,7 +16084,7 @@
         {
           "id": "theme-3-fire-laws-0240",
           "category": "theme-3-fire-laws",
-          "question": "60. 화재예방강화지구의 관리 기준 중 다음 ( ) 안에 알맞은 것\n은?\n\n소방설비기사(전기분야)",
+          "question": "60. 화재예방강화지구의 관리 기준 중 다음 ( ) 안에 알맞은 것\n은?",
           "options": [
             "㉠ 월 1, ㉡ 7",
             "㉠ 월 1, ㉡ 10",
@@ -18244,7 +18244,7 @@
         {
           "id": "theme-3-fire-laws-0384",
           "category": "theme-3-fire-laws",
-          "question": "44. 화재가 발생할 우려가 높거나 화재가 발생하는 경우 그로 \n\n소방설비기사(전기분야)\n인하여 피해가 클 것으로 예상되는 지역을 화재예방강화지\n구로 지정할 수 있는 자는?",
+          "question": "44. 화재가 발생할 우려가 높거나 화재가 발생하는 경우 그로 \n\n인하여 피해가 클 것으로 예상되는 지역을 화재예방강화지\n구로 지정할 수 있는 자는?",
           "options": [
             "한국소방안전협회장",
             "소방시설관리사",
@@ -18439,7 +18439,7 @@
         {
           "id": "theme-3-fire-laws-0397",
           "category": "theme-3-fire-laws",
-          "question": "57. 위험물안전관리법령상 위험물 및 지정수량에 대한 기준 중 \n\n소방설비기사(전기분야)\n다음 ( ) 안에 알맞은 것은?",
+          "question": "57. 위험물안전관리법령상 위험물 및 지정수량에 대한 기준 중 \n\n다음 ( ) 안에 알맞은 것은?",
           "options": [
             "㉠ 150, ㉡ 50",
             "㉠ 53, ㉡ 50",
@@ -21640,7 +21640,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0190",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "68. 경계구역에 관한 다음 내용 중 ( )안에 맞는 것은?\n\n소방설비기사(전기분야)",
+          "question": "68. 경계구역에 관한 다음 내용 중 ( )안에 맞는 것은?",
           "options": [
             "3",
             "5",
@@ -23095,7 +23095,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0287",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "65. 자동화재탐지설비 수신기의 설치기준 중 다음 ( ) 안에 알맞\n은 것은?(관련 규정 개정전 문제로 여기서는 기존 정답인 2\n번을 누르면 정답 처리됩니다. 자세한 내용은 해설을 참고\n하세요.)\n    \n\n소방설비기사(전기분야)",
+          "question": "65. 자동화재탐지설비 수신기의 설치기준 중 다음 ( ) 안에 알맞\n은 것은?(관련 규정 개정전 문제로 여기서는 기존 정답인 2\n번을 누르면 정답 처리됩니다. 자세한 내용은 해설을 참고\n하세요.)",
           "options": [
             "2",
             "4",
@@ -23305,7 +23305,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0301",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "79. 비상조명등의 설치제외 기준 중 다음 ( ) 안에 알맞은 것은?\n\n소방설비기사(전기분야)",
+          "question": "79. 비상조명등의 설치제외 기준 중 다음 ( ) 안에 알맞은 것은?",
           "options": [
             "2",
             "5",
@@ -25255,7 +25255,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0431",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "69. 자동화재탐지설비 및 시각경보장치의 화재안전기준(NFSC \n\n소방설비기사(전기분야)\n203)에 따른 중계기에 대한 시설기준으로 틀린 것은?",
+          "question": "69. 자동화재탐지설비 및 시각경보장치의 화재안전기준(NFSC \n\n203)에 따른 중계기에 대한 시설기준으로 틀린 것은?",
           "options": [
             "조작 및 점검에 편리하고 화재 및 침수 등의 재해로 인\n한 피해를 받을 우려가 없는 장소에 설치할 것",
             "수신기에서 직접 감지기회로의 도통시험을 행하지 아니\n하는 것에 있어서는 수신기와 발신기 사이에 설치할 것",
@@ -25450,7 +25450,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0444",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "62. 감지기의 형식승인 및 제품검사의 기술기준에 따른 연기감\n\n소방설비기사(전기분야)\n지기의 종류로 옳은 것은?",
+          "question": "62. 감지기의 형식승인 및 제품검사의 기술기준에 따른 연기감\n\n지기의 종류로 옳은 것은?",
           "options": [
             "연복합형",
             "공기흡입형",
@@ -25855,7 +25855,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0471",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "69. 비상콘센트설비의 성능인증 및 제품검사의 기술기준에 따른 \n\n소방설비기사(전기분야)\n표시등의 구조 및 기능에 대한 내용이다. 다음 ( )에 들어갈 \n내용으로 옳은 것은?",
+          "question": "69. 비상콘센트설비의 성능인증 및 제품검사의 기술기준에 따른 \n\n표시등의 구조 및 기능에 대한 내용이다. 다음 ( )에 들어갈 \n내용으로 옳은 것은?",
           "options": [
             "ⓐ 100, ⓑ 1",
             "ⓐ 300, ⓑ 3",
@@ -25930,7 +25930,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0476",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "74. 누전경보기의 형식승인 및 제품검사의 기술기준에 따라 누\n\n소방설비기사(전기분야)\n전경보기에 사용되는 표시등의 구조 및 기능에 대한 설명으\n로 틀린 것은?",
+          "question": "74. 누전경보기의 형식승인 및 제품검사의 기술기준에 따라 누\n\n전경보기에 사용되는 표시등의 구조 및 기능에 대한 설명으\n로 틀린 것은?",
           "options": [
             "누전등이 설치된 수신부의 지구등은 적색외의 색으로도 \n표시할 수 있다.",
             "방전등 또는 발광다이오드의 경우 전구는 2개 이상을 병\n렬로 접속하여야 한다",
@@ -26140,7 +26140,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0490",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "68. 비상방송설비의 화재안전기준(NFSC 202)에 따라 비상방송\n설비 음향장치의 설치기준 중 다음 ( ) 에 들어갈 내용으로 \n옳은 것은?(관련 규정 개정전 문제로 여기서는 기존 정답인 \n3번을 누르면 정답 처리됩니다. 자세한 내용은 해설을 참고\n하세요.)\n\n소방설비기사(전기분야)",
+          "question": "68. 비상방송설비의 화재안전기준(NFSC 202)에 따라 비상방송\n설비 음향장치의 설치기준 중 다음 ( ) 에 들어갈 내용으로 \n옳은 것은?(관련 규정 개정전 문제로 여기서는 기존 정답인 \n3번을 누르면 정답 처리됩니다. 자세한 내용은 해설을 참고\n하세요.)",
           "options": [
             "㉠ 2, ㉡ 3500",
             "㉠ 3, ㉡ 5000",
@@ -26755,7 +26755,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0531",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "69. 자동화재탐지설비 및 시각경보장치의 화재안전기준(NFSC \n\n소방설비기사(전기분야)\n203)에 따라 부착 높이가 4m 미만으로 연기감지기 3종을 \n설치할 때, 바닥면적 몇 m2 마다 1개 이상 설치하여야 하는\n가?",
+          "question": "69. 자동화재탐지설비 및 시각경보장치의 화재안전기준(NFSC \n\n203)에 따라 부착 높이가 4m 미만으로 연기감지기 3종을 \n설치할 때, 바닥면적 몇 m2 마다 1개 이상 설치하여야 하는\n가?",
           "options": [
             "50",
             "75",
@@ -26845,7 +26845,7 @@
         {
           "id": "theme-4-fire-electrical-facilities-0537",
           "category": "theme-4-fire-electrical-facilities",
-          "question": "75. 다음은 자동화재속보설비의 속보기의 성능인증 및 제품검사\n의 기술기준에 따른 속보기에 대한 내용이다. ( )에 들어갈 \n\n소방설비기사(전기분야)\n내용으로 옳은 것은?",
+          "question": "75. 다음은 자동화재속보설비의 속보기의 성능인증 및 제품검사\n의 기술기준에 따른 속보기에 대한 내용이다. ( )에 들어갈 \n\n내용으로 옳은 것은?",
           "options": [
             "ⓐ 10, ⓑ 30",
             "ⓐ 15, ⓑ 30",
