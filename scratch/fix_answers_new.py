@@ -25,6 +25,16 @@ def clean_watermarks(text):
     text = re.sub(r'^\s*---\s*$', '', text, flags=re.MULTILINE)
     return text.strip()
 
+def is_contaminated_question(text):
+    watermark_patterns = (
+        '최강 자격증 기출문제',
+        '전자문제집 CBT',
+        '해설달기 프로젝트',
+        '실시간으로 변경됩니다',
+        'www.comcbt.com',
+    )
+    return any(pattern in text for pattern in watermark_patterns)
+
 def extract_explanation(text):
     exp = []
     if '[해설작성자' in text:
@@ -117,6 +127,9 @@ def process_md_question(q_text, theme, themes, txt_db_laws, omr_table):
     stem, opts, ans_idx = parse_options(q_text)
     stem = clean_watermarks(stem)
     opts = [clean_watermarks(opt) for opt in opts]
+
+    if is_contaminated_question(stem) or any(is_contaminated_question(opt) for opt in opts):
+        return
     
     match = re.match(r'^(\d+)\.\s', stem.strip())
     if match:
@@ -264,6 +277,9 @@ def build_theme_5(txt_db_anki):
         raw_q = data['question']
         clean_q = clean_watermarks(raw_q)
         stem, options, ans_idx = parse_options(clean_q)
+
+        if is_contaminated_question(stem) or any(is_contaminated_question(opt) for opt in options):
+            continue
         
         if data.get('answer'):
             ans_str = data['answer'].replace('\"', '')
