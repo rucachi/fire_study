@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=6";
+const DATA_URL = "theme-bank.json?v=8";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -12,10 +12,6 @@ const SUBJECT_LABELS = {
   "theme-4-fire-electrical-facilities": {
     label: "소방전기시설의 구조 및 원리",
     description: "감지·경보·유도등·비상전원"
-  },
-  "theme-5-fire-electrical-anki": {
-    label: "소방설비기사 전기 Anki",
-    description: "Anki 전기 학습 자료"
   },
   "theme-6-fire-electrical-practical": {
     label: "소방전기 실기",
