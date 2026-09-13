@@ -1,5 +1,27 @@
 const DATA_URL = "theme-bank.json";
 let SUBJECTS = [];
+const SUBJECT_LABELS = {
+  "theme-1-fire-principles": {
+    label: "소방원론",
+    description: "연소·화재·소화·위험물"
+  },
+  "theme-2-fire-electrical-circuits": {
+    label: "소방전기회로",
+    description: "전기이론·회로·측정·제어"
+  },
+  "theme-3-fire-laws": {
+    label: "소방관계법규",
+    description: "소방기본법·시설법·위험물법"
+  },
+  "theme-4-fire-electrical-facilities": {
+    label: "소방전기시설의 구조 및 원리",
+    description: "감지·경보·유도등·비상전원"
+  },
+  "theme-5-fire-electrical-anki": {
+    label: "소방설비기사 전기 Anki",
+    description: "Anki 전기 학습 자료"
+  }
+};
 const state = {
   allItems: [], selectedSubject: null, questions: [], index: 0,
   selectedAnswer: null, score: 0, answered: 0, lastCount: 20
@@ -13,7 +35,7 @@ function show(view) {
 function renderSubjects() {
   $("subject-list").innerHTML = SUBJECTS.map((subject) => `
     <button class="subject-card" type="button" data-subject="${subject.key}">
-      <strong>${subject.label}</strong><span>${subject.description}</span>
+      <strong>${subject.displayLabel}</strong><span>${subject.description}</span>
     </button>
   `).join("");
   document.querySelectorAll("[data-subject]").forEach((button) => button.addEventListener("click", () => {
@@ -36,6 +58,12 @@ function startQuiz() {
   state.lastCount = selectedCount;
   show("quiz-view");
   renderQuestion();
+}
+
+function goHome() {
+  state.selectedSubject = null;
+  state.questions = [];
+  show("setup-view");
 }
 
 function renderQuestion() {
@@ -114,7 +142,17 @@ async function init() {
     const response = await fetch(DATA_URL);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
-    SUBJECTS = data.subjects;
+    SUBJECTS = data.subjects.map((subject) => {
+      const metadata = SUBJECT_LABELS[subject.key] || {
+        label: subject.key,
+        description: "학습 문제"
+      };
+      return {
+        ...subject,
+        displayLabel: metadata.label,
+        description: metadata.description
+      };
+    });
     state.allItems = SUBJECTS.flatMap((subject) => subject.items);
     renderSubjects();
   } catch (error) {
@@ -127,8 +165,8 @@ $("start-button").addEventListener("click", startQuiz);
 $("submit-button").addEventListener("click", submitAnswer);
 $("next-button").addEventListener("click", nextQuestion);
 $("retry-button").addEventListener("click", startQuiz);
-$("back-button").addEventListener("click", () => show("setup-view"));
-$("result-home-button").addEventListener("click", () => show("setup-view"));
+$("back-button").addEventListener("click", goHome);
+$("result-home-button").addEventListener("click", goHome);
 $("reset-progress").addEventListener("click", () => {
   state.score = 0;
   localStorage.clear();
