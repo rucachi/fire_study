@@ -41,6 +41,9 @@ select { padding: 10px 34px 10px 12px; color: var(--ink); background: #fff; bord
 .secondary-button { color: var(--primary); background: #edf2ff; }
 .text-button { padding: 4px 0; color: var(--muted); background: transparent; border: 0; }
 .text-button:hover { color: var(--primary); }
+.header-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.home-button { padding: 8px 16px; color: var(--primary); background: #edf2ff; border: 1px solid var(--primary); border-radius: 9px; font-weight: 700; font-size: .9rem; transition: background .15s, color .15s; }
+.home-button:hover { color: #fff; background: var(--primary); }
 .hidden { display: none !important; }
 .quiz-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; color: var(--muted); font-size: .9rem; }
 .progress-track { height: 7px; margin-bottom: 30px; overflow: hidden; background: #e9edf5; border-radius: 99px; }

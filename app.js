@@ -28,6 +28,10 @@ const state = {
 };
 const $ = (id) => document.getElementById(id);
 
+function categoryLabel(key) {
+  return (SUBJECT_LABELS[key] || {}).label || key;
+}
+
 function show(view) {
   ["setup-view", "quiz-view", "result-view"].forEach((id) => $(id).classList.toggle("hidden", id !== view));
 }
@@ -72,7 +76,7 @@ function renderQuestion() {
   $("progress-label").textContent = `${state.index + 1} / ${state.questions.length}`;
   $("score-label").textContent = `현재 점수 ${state.score}`;
   $("progress-bar").style.width = `${(state.index / state.questions.length) * 100}%`;
-  $("question-category").textContent = item.category;
+  $("question-category").textContent = categoryLabel(item.category);
   $("question-id").textContent = item.id;
   $("question-text").textContent = item.question;
   const options = item.options.length ? item.options : ["답안과 해설 보기"];
@@ -167,6 +171,7 @@ $("next-button").addEventListener("click", nextQuestion);
 $("retry-button").addEventListener("click", startQuiz);
 $("back-button").addEventListener("click", goHome);
 $("result-home-button").addEventListener("click", goHome);
+$("home-button").addEventListener("click", goHome);
 $("reset-progress").addEventListener("click", () => {
   state.score = 0;
   localStorage.clear();
