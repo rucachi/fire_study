@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=15";
+const DATA_URL = "theme-bank.json?v=16";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -73,9 +73,10 @@ function removeRepeatedQuestionImages(text, repeatedPaths) {
     keptImage = true;
     return image;
   });
-  return keptImage
+  const withoutMarker = keptImage
     ? cleaned
     : cleaned.replace(/\*\*\[\s*그림\s*\]\*\*/g, "");
+  return withoutMarker.replace(/\n{3,}/g, "\n\n").trim();
 }
 
 /** Format date for Korean localization (e.g. 2026년 9월 13일 오후 7시 14분) */
