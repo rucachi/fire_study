@@ -17,73 +17,78 @@
   
   <meta name="robots" content="index, follow">
   <title>소방설비기사 문제풀이</title>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <main class="app-shell">
     <header class="app-header">
       <div>
-        <p class="eyebrow">FIRE SAFETY STUDY</p>
+        <p class="eyebrow">FIRE SAFETY / CBT LAB</p>
         <h1>소방설비기사 문제풀이</h1>
-        <p class="subtitle">답을 선택하고 바로 정답과 해설을 확인하세요.</p>
+        <p class="subtitle">오늘의 약점을 빠르게 찾고, 바로 복습하세요.</p>
       </div>
       <div class="header-actions">
-        <a href="https://blog.naver.com/anova99" target="_blank" class="blog-banner" rel="noopener noreferrer">
-          <strong>📝 네이버 블로그 방문하기</strong>
-          <span>더 많은 기출문제와 요약정리 보기</span>
-        </a>
-        <button id="home-button" class="home-button" type="button" title="처음 화면으로">🏠 처음 화면</button>
+        <button id="home-button" class="home-button" type="button" title="처음 화면으로">처음 화면</button>
         <button id="reset-progress" class="text-button" type="button">기록 초기화</button>
       </div>
     </header>
 
     <section id="setup-view" class="panel">
-      <h2>과목 선택</h2>
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">STUDY DESK</p>
+          <h2>어디부터 풀까요?</h2>
+        </div>
+        <span class="session-chip">총 <strong id="total-count">0</strong>문항</span>
+      </div>
       <div id="subject-list" class="subject-grid" aria-label="과목 목록"></div>
       <div class="setup-actions">
-        <label class="select-label" for="question-count">출제 문항 수</label>
-        <select id="question-count">
-          <option value="10">10문항</option>
-          <option value="20" selected>20문항</option>
-          <option value="50">50문항</option>
-          <option value="all">전체 문항</option>
-        </select>
+        <div class="setup-choice">
+          <label class="select-label" for="question-count">이번 세션</label>
+          <select id="question-count">
+            <option value="10">10문항</option>
+            <option value="20" selected>20문항</option>
+            <option value="50">50문항</option>
+            <option value="all">전체 문항</option>
+          </select>
+        </div>
         <button id="start-button" class="primary-button" type="button" disabled>문제 풀기 시작</button>
       </div>
     </section>
 
     <section id="quiz-view" class="panel hidden" aria-live="polite">
       <div class="quiz-toolbar">
-        <button id="back-button" class="text-button" type="button">⌂ 처음 화면</button>
-        <span id="progress-label"></span>
-        <span id="score-label"></span>
+        <button id="back-button" class="text-button" type="button">← 과목 선택</button>
+        <div class="toolbar-progress"><span id="progress-label"></span><span id="score-label"></span></div>
       </div>
       <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
-      <article class="question-card">
-        <div class="question-meta">
-          <span id="question-category" class="badge"></span>
-          <span id="question-id"></span>
-        </div>
-        <h2 id="question-text"></h2>
-        <div id="options" class="options" role="radiogroup" aria-label="답안"></div>
-        <div id="feedback" class="feedback hidden"></div>
-        <div class="question-actions">
-          <button id="submit-button" class="primary-button" type="button" disabled>정답 확인</button>
-          <button id="next-button" class="secondary-button hidden" type="button">다음 문제 →</button>
-        </div>
-      </article>
-      
-      <a href="https://blog.naver.com/anova99" target="_blank" rel="noopener noreferrer" class="promo-banner">
-        <span class="promo-icon">📝</span>
-        <div class="promo-text">
-          <strong>소방설비기사 합격 비법 & 핵심 요약정리!</strong>
-          <span>제작자 블로그에서 더 많은 자료를 확인하세요 👉</span>
-        </div>
-      </a>
+      <div class="quiz-layout">
+        <article class="question-card">
+          <div class="question-meta">
+            <span id="question-category" class="badge"></span>
+            <span id="question-id"></span>
+          </div>
+          <h2 id="question-text"></h2>
+          <div id="options" class="options" role="radiogroup" aria-label="답안"></div>
+          <div id="feedback" class="feedback hidden"></div>
+          <div class="question-actions">
+            <button id="submit-button" class="primary-button" type="button" disabled>정답 확인</button>
+            <button id="next-button" class="secondary-button hidden" type="button">다음 문제 →</button>
+          </div>
+        </article>
+        <aside class="study-rail">
+          <p class="section-kicker">SESSION</p>
+          <strong id="rail-progress">진행률 0%</strong>
+          <div class="rail-stat"><span>풀이 완료</span><strong id="answered-label">0 / 0</strong></div>
+          <div class="rail-stat"><span>현재 정답률</span><strong id="accuracy-label">0%</strong></div>
+          <div class="rail-note">정답을 고른 뒤 해설을 읽고 다음 문제로 넘어가세요.</div>
+        </aside>
+      </div>
     </section>
 
     <section id="result-view" class="panel hidden">
       <div class="result-icon">✓</div>
+      <p class="section-kicker">SESSION COMPLETE</p>
       <h2>학습 완료</h2>
       <p id="result-summary"></p>
       <div id="result-breakdown" class="result-breakdown"></div>

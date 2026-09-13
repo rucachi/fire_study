@@ -46,9 +46,10 @@ function parseMarkdown(text) {
 function renderSubjects() {
   $("subject-list").innerHTML = SUBJECTS.map((subject) => `
     <button class="subject-card" type="button" data-subject="${subject.key}">
-      <strong>${subject.displayLabel}</strong><span>${subject.description}</span>
+      <strong>${subject.displayLabel}</strong><span>${subject.description}</span><span>${subject.items.length}문항</span>
     </button>
   `).join("");
+  $("total-count").textContent = SUBJECTS.reduce((total, subject) => total + subject.items.length, 0);
   document.querySelectorAll("[data-subject]").forEach((button) => button.addEventListener("click", () => {
     state.selectedSubject = SUBJECTS.find((subject) => subject.key === button.dataset.subject);
     document.querySelectorAll(".subject-card").forEach((card) => card.classList.remove("selected"));
@@ -87,6 +88,7 @@ function renderQuestion() {
   $("progress-label").textContent = `${state.index + 1} / ${state.questions.length}`;
   $("score-label").textContent = `현재 점수 ${state.score}`;
   $("progress-bar").style.width = `${(state.index / state.questions.length) * 100}%`;
+  updateSessionStats();
   $("question-category").textContent = categoryLabel(state.selectedSubject.key);
   $("question-id").textContent = `문제 ${state.index + 1}`;
   $("question-text").innerHTML = parseMarkdown(item.question);
@@ -124,6 +126,16 @@ function renderQuestion() {
   $("next-button").classList.add("hidden");
 }
 
+function updateSessionStats() {
+  const completed = state.answered;
+  const total = state.questions.length;
+  const progress = total ? Math.round((state.index / total) * 100) : 0;
+  const accuracy = completed ? Math.round((state.score / completed) * 100) : 0;
+  $("rail-progress").textContent = `진행률 ${progress}%`;
+  $("answered-label").textContent = `${completed} / ${total}`;
+  $("accuracy-label").textContent = `${accuracy}%`;
+}
+
 function submitAnswer() {
   const item = state.questions[state.index];
   const hasOptions = item.options && item.options.length > 0;
@@ -154,6 +166,8 @@ function submitAnswer() {
     const answer = parseMarkdown(item.answerText) || parseMarkdown(item.explanation) || "해설 없음";
     feedback.innerHTML = `<strong>📝 답안 및 해설</strong>${answer}<br>${item.explanation && item.explanation !== item.answerText ? parseMarkdown(item.explanation) : ""}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
   }
+
+  updateSessionStats();
 
   $("submit-button").classList.add("hidden");
   $("next-button").classList.remove("hidden");
