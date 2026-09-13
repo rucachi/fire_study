@@ -1,0 +1,17 @@
+Theme: subjects, type: <class 'list'>
+  First item keys: ['key', 'label', 'items']
+  First item:
+{
+  "key": "theme-1-fire-principles",
+  "label": "1 fire principles",
+  "items": [
+    {
+      "id": "theme-1-fire-principles-0001",
+      "category": "theme-1-fire-principles",
+      "question": "1. 소방안전관리대상물에 대한 소방안전관리자의 업무가 아닌 \n것은?\n   ① 소방계획서의 작성\n② 자위소방대의 구성\n   ③ 소방훈련 및 교육\n❹ 소방용수시설의 지정",
+      "options": [],
+      "answer": null,
+      "answerText": "1번",
+      "explanation": "정답은 1번입니다. 선택지의 핵심개념 을 확인하세요.\n\n### 그림\n\n![1번 그림](../images/20150308__20150308__p01_01.jpeg)",
+      "source":
+

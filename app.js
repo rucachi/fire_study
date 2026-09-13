@@ -5,10 +5,6 @@ const SUBJECT_LABELS = {
     label: "소방원론",
     description: "연소·화재·소화·위험물"
   },
-  "theme-2-fire-electrical-circuits": {
-    label: "소방전기회로",
-    description: "전기이론·회로·측정·제어"
-  },
   "theme-3-fire-laws": {
     label: "소방관계법규",
     description: "소방기본법·시설법·위험물법"
@@ -34,6 +30,17 @@ function categoryLabel(key) {
 
 function show(view) {
   ["setup-view", "quiz-view", "result-view"].forEach((id) => $(id).classList.toggle("hidden", id !== view));
+}
+
+function parseMarkdown(text) {
+  if (!text) return "";
+  // Fix image paths from relative markdown to web root
+  let html = text.replace(/\.\.\/images\//g, 'themes/images/');
+  // Convert markdown images to HTML
+  html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0; display: block;">');
+  // Convert bold text
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  return html;
 }
 
 function renderSubjects() {
@@ -76,9 +83,9 @@ function renderQuestion() {
   $("progress-label").textContent = `${state.index + 1} / ${state.questions.length}`;
   $("score-label").textContent = `현재 점수 ${state.score}`;
   $("progress-bar").style.width = `${(state.index / state.questions.length) * 100}%`;
-  $("question-category").textContent = categoryLabel(item.category);
-  $("question-id").textContent = item.id;
-  $("question-text").textContent = item.question;
+  $("question-category").textContent = categoryLabel(state.selectedSubject.key);
+  $("question-id").textContent = `문제 ${state.index + 1}`;
+  $("question-text").innerHTML = parseMarkdown(item.question);
 
   const hasOptions = item.options && item.options.length > 0;
 
@@ -86,7 +93,7 @@ function renderQuestion() {
     // Multiple-choice question: show selectable options
     $("options").innerHTML = item.options.map((option, index) => `
       <button class="option" type="button" data-index="${index}" role="radio" aria-checked="false">
-        <span class="option-key">${String.fromCharCode(9312 + index)}</span><span>${option || "보기 내용 확인 필요"}</span>
+        <span class="option-key">${String.fromCharCode(9312 + index)}</span><span>${parseMarkdown(option) || "보기 내용 확인 필요"}</span>
       </button>
     `).join("");
     document.querySelectorAll(".option").forEach((button) => button.addEventListener("click", () => {
@@ -131,17 +138,17 @@ function submitAnswer() {
     const feedback = $("feedback");
     feedback.className = `feedback ${correct ? "correct" : "incorrect"}`;
     const answerText = item.answer == null
-      ? `답안: ${item.answerText || "원문 답안 확인 필요"}`
-      : `정답: ⓘ ${item.options[item.answer]}`;
-    feedback.innerHTML = `<strong>${correct ? "✅ 정답입니다!" : "❌ 오답입니다."}</strong>${answerText}<br>${item.explanation || "해설 준비 중입니다."}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+      ? `답안: ${parseMarkdown(item.answerText) || "원문 답안 확인 필요"}`
+      : `정답: ⓘ ${parseMarkdown(item.options[item.answer])}`;
+    feedback.innerHTML = `<strong>${correct ? "✅ 정답입니다!" : "❌ 오답입니다."}</strong>${answerText}<br>${parseMarkdown(item.explanation) || "해설 준비 중입니다."}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
     $("score-label").textContent = `현재 점수 ${state.score}`;
   } else {
     // Essay/calculation: just reveal the answer and explanation
     state.answered++;
     const feedback = $("feedback");
     feedback.className = "feedback correct";
-    const answer = item.answerText || item.explanation || "해설 없음";
-    feedback.innerHTML = `<strong>📝 답안 및 해설</strong>${answer}<br>${item.explanation && item.explanation !== answer ? item.explanation : ""}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+    const answer = parseMarkdown(item.answerText) || parseMarkdown(item.explanation) || "해설 없음";
+    feedback.innerHTML = `<strong>📝 답안 및 해설</strong>${answer}<br>${item.explanation && item.explanation !== item.answerText ? parseMarkdown(item.explanation) : ""}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
   }
 
   $("submit-button").classList.add("hidden");

@@ -70,6 +70,16 @@ select { padding: 10px 34px 10px 12px; color: var(--ink); background: #fff; bord
 .result-breakdown strong, .result-breakdown span { display: block; }
 .result-breakdown strong { margin-bottom: 5px; font-size: 1.3rem; }
 footer { padding: 22px 0 0; text-align: center; font-size: .8rem; }
+
+/* Promo Banners */
+.promo-banner { display: flex; align-items: center; gap: 16px; margin-top: 30px; padding: 18px 22px; text-decoration: none; background: #f0faeb; border: 1px solid #03C75A; border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; }
+.promo-banner:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(3, 199, 90, 0.15); }
+.promo-icon { font-size: 2rem; }
+.promo-text { display: flex; flex-direction: column; gap: 4px; }
+.promo-text strong { color: #03C75A; font-size: 1.05rem; }
+.promo-text span { color: var(--ink); font-size: 0.95rem; font-weight: 500; }
+.result-promo { margin-top: 40px; }
+
 @media (max-width: 680px) {
   .app-shell { width: min(100% - 20px, 940px); padding-top: 24px; }
   .app-header { display: block; }
