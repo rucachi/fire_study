@@ -58,6 +58,18 @@ function parseMarkdown(text) {
   return html;
 }
 
+/** Format date for Korean localization (e.g. 2026년 9월 13일 오후 7시 14분) */
+function formatDateTime(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? '오후' : '오전';
+  const displayHours = hours % 12 || 12;
+  return `${year}년 ${month}월 ${day}일 ${ampm} ${displayHours}시 ${minutes}분`;
+}
+
 function renderSubjects() {
   $("subject-list").innerHTML = SUBJECTS.map((subject) => `
     <button class="subject-card" type="button" data-subject="${escapeHtml(subject.key)}">
@@ -220,6 +232,9 @@ function nextQuestion() {
 function showResult() {
   $("progress-bar").style.width = "100%";
   show("result-view");
+
+  const nowStr = formatDateTime(new Date());
+  $("result-title").textContent = `학습 완료 (${nowStr})`;
 
   if (state.isEssaySubject) {
     $("result-summary").textContent = `${state.questions.length}문항 학습 완료`;
