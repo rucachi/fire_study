@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=11";
+const DATA_URL = "theme-bank.json?v=14";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -52,6 +52,30 @@ function parseMarkdown(text) {
   // Convert bold text
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   return html;
+}
+
+function collectRepeatedImagePaths(subjects) {
+  const counts = new Map();
+  subjects.forEach((subject) => (subject.items || []).forEach((item) => {
+    const paths = String(item.question || "").match(/!\[[^\]]*\]\(([^)]+)\)/g) || [];
+    paths.forEach((image) => {
+      const path = image.match(/\(([^)]+)\)/)[1];
+      counts.set(path, (counts.get(path) || 0) + 1);
+    });
+  }));
+  return new Set([...counts].filter(([, count]) => count > 1).map(([path]) => path));
+}
+
+function removeRepeatedQuestionImages(text, repeatedPaths) {
+  let keptImage = false;
+  const cleaned = String(text || "").replace(/!\[[^\]]*\]\(([^)]+)\)/g, (image, path) => {
+    if (repeatedPaths.has(path)) return "";
+    keptImage = true;
+    return image;
+  });
+  return keptImage
+    ? cleaned
+    : cleaned.replace(/\*\*\[\s*그림\s*\]\*\*/g, "");
 }
 
 /** Format date for Korean localization (e.g. 2026년 9월 13일 오후 7시 14분) */
@@ -255,6 +279,7 @@ async function init() {
     const response = await fetch(DATA_URL);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
+    const repeatedImagePaths = collectRepeatedImagePaths(data.subjects);
     SUBJECTS = data.subjects.map((subject) => {
       const key = subject.key || subject.id;
       const metadata = SUBJECT_LABELS[key] || {
@@ -263,6 +288,10 @@ async function init() {
       };
       return {
         ...subject,
+        items: (subject.items || []).map((item) => ({
+          ...item,
+          question: removeRepeatedQuestionImages(item.question, repeatedImagePaths)
+        })),
         key,
         displayLabel: metadata.label,
         description: metadata.description
