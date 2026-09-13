@@ -79,48 +79,73 @@ function renderQuestion() {
   $("question-category").textContent = categoryLabel(item.category);
   $("question-id").textContent = item.id;
   $("question-text").textContent = item.question;
-  const options = item.options.length ? item.options : ["답안과 해설 보기"];
-  $("options").innerHTML = options.map((option, index) => `
-    <button class="option" type="button" data-index="${index}" role="radio" aria-checked="false">
-      <span class="option-key">${String.fromCharCode(9312 + index)}</span><span>${option || "보기 내용 확인 필요"}</span>
-    </button>
-  `).join("");
-  document.querySelectorAll(".option").forEach((button) => button.addEventListener("click", () => {
-    if ($("feedback").classList.contains("hidden") === false) return;
-    state.selectedAnswer = Number(button.dataset.index);
-    document.querySelectorAll(".option").forEach((option) => {
-      option.classList.toggle("selected", option === button);
-      option.setAttribute("aria-checked", option === button ? "true" : "false");
-    });
+
+  const hasOptions = item.options && item.options.length > 0;
+
+  if (hasOptions) {
+    // Multiple-choice question: show selectable options
+    $("options").innerHTML = item.options.map((option, index) => `
+      <button class="option" type="button" data-index="${index}" role="radio" aria-checked="false">
+        <span class="option-key">${String.fromCharCode(9312 + index)}</span><span>${option || "보기 내용 확인 필요"}</span>
+      </button>
+    `).join("");
+    document.querySelectorAll(".option").forEach((button) => button.addEventListener("click", () => {
+      if ($("feedback").classList.contains("hidden") === false) return;
+      state.selectedAnswer = Number(button.dataset.index);
+      document.querySelectorAll(".option").forEach((option) => {
+        option.classList.toggle("selected", option === button);
+        option.setAttribute("aria-checked", option === button ? "true" : "false");
+      });
+      $("submit-button").disabled = false;
+    }));
+    $("submit-button").textContent = "정답 확인";
+    $("submit-button").disabled = true;
+  } else {
+    // Essay/calculation question: show a single reveal button
+    $("options").innerHTML = "";
+    $("submit-button").textContent = "해설 보기";
     $("submit-button").disabled = false;
-  }));
+  }
+
   $("feedback").className = "feedback hidden";
   $("feedback").textContent = "";
   $("submit-button").classList.remove("hidden");
-  $("submit-button").disabled = true;
   $("next-button").classList.add("hidden");
 }
 
 function submitAnswer() {
   const item = state.questions[state.index];
-  const correct = item.answer != null && state.selectedAnswer === item.answer;
-  if (correct) state.score++;
-  state.answered++;
-  document.querySelectorAll(".option").forEach((button) => {
-    const index = Number(button.dataset.index);
-    button.disabled = true;
-    if (index === item.answer) button.classList.add("correct");
-    if (index === state.selectedAnswer && !correct) button.classList.add("incorrect");
-  });
-  const feedback = $("feedback");
-  feedback.className = `feedback ${correct ? "correct" : "incorrect"}`;
-  const answerText = item.answer == null
-    ? `답안: ${item.answerText || "원문 답안 확인 필요"}`
-    : `정답: ${item.options[item.answer]}`;
-  feedback.innerHTML = `<strong>${correct ? "정답입니다." : "오답입니다."}</strong>${answerText}<br>${item.explanation || "해설 준비 중입니다."}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+  const hasOptions = item.options && item.options.length > 0;
+
+  if (hasOptions) {
+    // Multiple-choice: grade the answer
+    const correct = item.answer != null && state.selectedAnswer === item.answer;
+    if (correct) state.score++;
+    state.answered++;
+    document.querySelectorAll(".option").forEach((button) => {
+      const index = Number(button.dataset.index);
+      button.disabled = true;
+      if (index === item.answer) button.classList.add("correct");
+      if (index === state.selectedAnswer && !correct) button.classList.add("incorrect");
+    });
+    const feedback = $("feedback");
+    feedback.className = `feedback ${correct ? "correct" : "incorrect"}`;
+    const answerText = item.answer == null
+      ? `답안: ${item.answerText || "원문 답안 확인 필요"}`
+      : `정답: ⓘ ${item.options[item.answer]}`;
+    feedback.innerHTML = `<strong>${correct ? "✅ 정답입니다!" : "❌ 오답입니다."}</strong>${answerText}<br>${item.explanation || "해설 준비 중입니다."}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+    $("score-label").textContent = `현재 점수 ${state.score}`;
+  } else {
+    // Essay/calculation: just reveal the answer and explanation
+    state.answered++;
+    const feedback = $("feedback");
+    feedback.className = "feedback correct";
+    const answer = item.answerText || item.explanation || "해설 없음";
+    feedback.innerHTML = `<strong>📝 답안 및 해설</strong>${answer}<br>${item.explanation && item.explanation !== answer ? item.explanation : ""}<small>출처: ${item.source || "공식 기준 확인 필요"}</small>`;
+  }
+
   $("submit-button").classList.add("hidden");
   $("next-button").classList.remove("hidden");
-  $("score-label").textContent = `현재 점수 ${state.score}`;
 }
 
 function nextQuestion() {
