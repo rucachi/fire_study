@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json?v=12";
+const DATA_URL = "theme-bank.json?v=13";
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
@@ -73,6 +73,15 @@ function parseMarkdown(text) {
   // Convert bold text
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   return html;
+}
+
+function parseQuestion(text) {
+  const withoutImages = String(text || "")
+    .replace(/\*\*\[\s*그림\s*\]\*\*/g, "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  return parseMarkdown(withoutImages);
 }
 
 /** Format date for Korean localization (e.g. 2026년 9월 13일 오후 7시 14분) */
@@ -153,7 +162,7 @@ function renderQuestion() {
   updateSessionStats();
   $("question-category").textContent = categoryLabel(state.selectedSubject.key);
   $("question-id").textContent = `문제 ${state.index + 1}`;
-  $("question-text").innerHTML = parseMarkdown(item.question);
+  $("question-text").innerHTML = parseQuestion(item.question);
 
   const hasOptions = isMultipleChoice(item);
 
