@@ -1,4 +1,4 @@
-const DATA_URL = "theme-bank.json";
+const DATA_URL = "theme-bank.json?v=" + new Date().getTime();
 let SUBJECTS = [];
 const SUBJECT_LABELS = {
   "theme-1-fire-principles": {
