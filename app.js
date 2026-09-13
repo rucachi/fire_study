@@ -62,7 +62,9 @@ function shuffle(items) {
 }
 
 function startQuiz() {
+  if (!state.selectedSubject) return;
   const pool = state.selectedSubject.items;
+  if (!pool.length) return;
   const selectedCount = $("question-count").value === "all" ? pool.length : Number($("question-count").value);
   state.questions = shuffle(pool).slice(0, selectedCount);
   state.index = 0; state.selectedAnswer = null; state.score = 0; state.answered = 0;
@@ -74,6 +76,8 @@ function startQuiz() {
 function goHome() {
   state.selectedSubject = null;
   state.questions = [];
+  document.querySelectorAll(".subject-card").forEach((card) => card.classList.remove("selected"));
+  $("start-button").disabled = true;
   show("setup-view");
 }
 
@@ -179,12 +183,14 @@ async function init() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     SUBJECTS = data.subjects.map((subject) => {
-      const metadata = SUBJECT_LABELS[subject.key] || {
-        label: subject.key,
+      const key = subject.key || subject.id;
+      const metadata = SUBJECT_LABELS[key] || {
+        label: key,
         description: "학습 문제"
       };
       return {
         ...subject,
+        key,
         displayLabel: metadata.label,
         description: metadata.description
       };
