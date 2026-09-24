@@ -306,6 +306,39 @@ async function init() {
   }
 }
 
+function getLocalDateString() {
+  const d = new Date();
+  return d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+}
+
+function checkPromoPopup() {
+  const lastSeen = localStorage.getItem('promo_popup_date');
+  const today = getLocalDateString();
+  
+  if (lastSeen !== today) {
+    // Slight delay so the user sees the page first before popup appears
+    setTimeout(() => {
+      const modal = $('promo-modal');
+      if (modal) modal.classList.remove('modal-hidden');
+    }, 500);
+  }
+}
+
+function closePromoPopup() {
+  if ($('modal-never-show') && $('modal-never-show').checked) {
+    localStorage.setItem('promo_popup_date', getLocalDateString());
+  }
+  if ($('promo-modal')) $('promo-modal').classList.add('modal-hidden');
+}
+
+if ($('modal-close')) $('modal-close').addEventListener('click', closePromoPopup);
+if ($('modal-go-blog')) {
+  $('modal-go-blog').addEventListener('click', () => {
+    localStorage.setItem('promo_popup_date', getLocalDateString());
+    $('promo-modal').classList.add('modal-hidden');
+  });
+}
+
 $("start-button").addEventListener("click", startQuiz);
 $("submit-button").addEventListener("click", submitAnswer);
 $("next-button").addEventListener("click", nextQuestion);
@@ -318,4 +351,5 @@ $("reset-progress").addEventListener("click", () => {
   state.answered = 0;
   alert("학습 기록을 초기화했습니다.");
 });
-init();
+
+init().then(checkPromoPopup);

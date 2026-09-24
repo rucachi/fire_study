@@ -1,0 +1,16 @@
+Total garbage text issues found: 15
+Found '해설작성자 :' in item: 9. 물이 소화 약제로써 사용되는 장
+Found '전자문제집 CBT' in item: 70. 피난설비의 설치면제 요건의 규
+Found '전자문제집 CBT' in item: 77. 근린생활시설 중 입원실이 있는
+Found '전자문제집 CBT' in item: 80. 발신기의 외함을 합성수지를 사
+Found 'www.comcbt.com' in item: 80. 발신기의 외함을 합성수지를 사
+Found '전자문제집 CBT' in item: 80. 유도등 및 유도표지의 화재안전
+Found 'www.comcbt.com' in item: 80. 유도등 및 유도표지의 화재안전
+Found '전자문제집 CBT' in item: 80. 무선통신보조설비의 화재안전기준
+Found 'www.comcbt.com' in item: 80. 무선통신보조설비의 화재안전기준
+Found '전자문제집 CBT' in item: 80. 유도등 및 유도표지의 화재안전
+Found 'www.comcbt.com' in item: 80. 유도등 및 유도표지의 화재안전
+Found '전자문제집 CBT' in item: 80. 축전지의 자기방전을 보충함과 
+Found 'www.comcbt.com' in item: 80. 축전지의 자기방전을 보충함과 
+Found '전자문제집 CBT' in item: 80. 자동화재탐지설비 및 시각경보장
+Found 'www.comcbt.com' in item: 80. 자동화재탐지설비 및 시각경보장

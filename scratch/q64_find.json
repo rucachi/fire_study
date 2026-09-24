@@ -1,0 +1,10 @@
+{
+  "id": "theme-5-fire-electrical-anki-0178",
+  "category": "theme-5-fire-electrical-anki",
+  "question": "다음은 누전경보기의 형식승인 및 제품검사의 기술기준에 대한 내용이다. 각 물음에 답하시오.\n(1) 전구는 사용전압의 몇 [%]인 교류전압을 20시간 연속하여 가하는 경우 단선, 현저한 광속변화, 흑화, 전류의 저하 등이 발생하지 않아야 하는가?\n(2) 전구는 몇 개 이상을 병렬로 접속하여야 하는가?\n(3) 누전경보기의 공칭작동전류치는 몇 [mA] 이하이어야 하는가?",
+  "options": [],
+  "answer": null,
+  "answerText": "(1) 130%",
+  "explanation": "(1) 130%\n(2) 2개 이상\n(3) 200mA 이하",
+  "source": "anki-electrical.md"
+}

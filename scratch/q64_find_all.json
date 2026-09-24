@@ -1,0 +1,42 @@
+[
+  {
+    "id": "theme-4-fire-electrical-facilities-0526",
+    "category": "theme-4-fire-electrical-facilities",
+    "question": "64. 다음은 누전경보기의 형식승인 및 제품검사의 기술기준에 \n따른 표시등에 대한 내용이다. ( )에 들어갈 내용으로 옳은 \n것은?\n    \n    ① ⓐ 150, ⓑ 3\n② ⓐ 300, ⓑ 3\n    ③ ⓐ 150, ⓑ 5\n④ ⓐ 300, ⓑ 5\n<문제 해설>\n<누전경보기의 형식승인 및 제품검사의 기술기준>\n제4조(부품의 구조 및 기능)\n2.표시등\n바.주위의 밝기가 300 lx인 장소에서 측정하여 앞면으로부터 3m \n떨어진 곳에서 켜진등이 확실히 식별되어야 한다.\n[해설작성자 : 소방전기공부중]",
+    "options": [],
+    "answer": null,
+    "answerText": "1번",
+    "explanation": "정답은 1번입니다. 선택지의 핵심개념 을 확인하세요.\n\n### 그림\n\n![64번 그림](../images/20220424__20220424__p13_01.png)\n![64번 그림](../images/20220424__20220424__p13_02.png)",
+    "source": "소방설비기사(전기분야)20220424(해설집).md"
+  },
+  {
+    "id": "theme-5-fire-electrical-anki-0001",
+    "category": "theme-5-fire-electrical-anki",
+    "question": "다음은 누전경보기의 구성요소와 기능에 관한 표이다. 빈칸을 채우시오.\n영상변류기 : (         )\n수신기 : (        )\n음향장치 : (         )\n차단릴레이 : (          )",
+    "options": [],
+    "answer": null,
+    "answerText": "구성요소 기능",
+    "explanation": "구성요소 기능\n영상변류기 누전전류 검출\n수신기 누설전류 증폭\n음향장치 누전 시 경보발령\n차단기구(차단릴레이) 누설전류 발생 시 전원차단",
+    "source": "anki-electrical.md"
+  },
+  {
+    "id": "theme-5-fire-electrical-anki-0159",
+    "category": "theme-5-fire-electrical-anki",
+    "question": "다음은 누전경보기의 화재안전기술기준 중 설치방법에 대한 내용이다. 다음 빈칸에 알맞은 내용을 넣으시오.\n경계전로의 정격전류가 ( ① )를 초과하는 전로에 있어서는 1급 누전경보기를, ( ① ) 이하의 전로에 있어서는 ( ② ) 누전경보기 또는 ( ③ ) 누전경보기를 설치할 것.",
+    "options": [],
+    "answer": null,
+    "answerText": "① 60A",
+    "explanation": "① 60A\n② 1급\n③ 2급",
+    "source": "anki-electrical.md"
+  },
+  {
+    "id": "theme-5-fire-electrical-anki-0178",
+    "category": "theme-5-fire-electrical-anki",
+    "question": "다음은 누전경보기의 형식승인 및 제품검사의 기술기준에 대한 내용이다. 각 물음에 답하시오.\n(1) 전구는 사용전압의 몇 [%]인 교류전압을 20시간 연속하여 가하는 경우 단선, 현저한 광속변화, 흑화, 전류의 저하 등이 발생하지 않아야 하는가?\n(2) 전구는 몇 개 이상을 병렬로 접속하여야 하는가?\n(3) 누전경보기의 공칭작동전류치는 몇 [mA] 이하이어야 하는가?",
+    "options": [],
+    "answer": null,
+    "answerText": "(1) 130%",
+    "explanation": "(1) 130%\n(2) 2개 이상\n(3) 200mA 이하",
+    "source": "anki-electrical.md"
+  }
+]

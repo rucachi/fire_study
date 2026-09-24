@@ -121,10 +121,38 @@
       <p>학습용 문제은행입니다. 법령·화재안전기준은 최신 원문을 확인하세요.</p>
       <p>제작자 블로그: <a href="https://blog.naver.com/anova99" target="_blank" rel="noopener noreferrer">https://blog.naver.com/anova99</a></p>
       <div style="margin-top: 15px;">
-        <img src="https://visitor-badge.laobi.icu/badge?page_id=rucachi.fire_study" alt="방문자 수"/>
+        <img id="visitor-badge" alt="방문자 수"/>
+        <script>
+          const d = new Date();
+          const dateString = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+          document.getElementById('visitor-badge').src = 'https://visitor-badge.laobi.icu/badge?page_id=rucachi.fire_study.' + dateString;
+        </script>
       </div>
     </footer>
   </main>
-  <script src="app.js?v=16"></script>
+  
+  <!-- 플로팅 블로그 버튼 (FAB) -->
+  <a href="https://blog.naver.com/anova99" target="_blank" rel="noopener noreferrer" class="fab-blog" aria-label="요약정리 노트">
+    <span class="fab-icon">📘</span>
+    <span class="fab-text">요약정리 노트</span>
+  </a>
+
+  <!-- 최초 접속 팝업 (모달) -->
+  <div id="promo-modal" class="modal-overlay modal-hidden" aria-modal="true" role="dialog">
+    <div class="modal-content">
+      <div class="modal-icon">👋</div>
+      <h2>합격으로 가는 가장 빠른 길!</h2>
+      <p>소방설비기사(전기분야) 합격을 위한 <strong>핵심 요약정리와 암기 비법</strong>이<br>블로그에 모두 준비되어 있습니다.<br><br>문제 풀이와 함께 요약 노트를 병행하시면<br>학습 효율이 2배가 됩니다!</p>
+      <div class="modal-actions">
+        <a href="https://blog.naver.com/anova99" target="_blank" rel="noopener noreferrer" id="modal-go-blog" class="primary-button">요약정리 보러가기 ↗</a>
+        <button id="modal-close" class="secondary-button" type="button">다음에 볼래요</button>
+      </div>
+      <div class="modal-footer">
+        <label><input type="checkbox" id="modal-never-show"> 오늘 하루 보지 않기</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=17"></script>
 </body>
 </html>
